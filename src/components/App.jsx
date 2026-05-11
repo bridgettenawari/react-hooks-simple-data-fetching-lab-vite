@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import dog from'./dog.png'
+import dog from "./dog.png";
 
 // create your App component here
 function App() {
@@ -14,23 +14,21 @@ function App() {
 				return res.json();
 			})
 			.then((data) => {
-        setImage(data.message)
-        setLoading(false)
-      })
+				setImage(data.message);
+				setLoading(false);
+			})
 			.catch((error) => setError(error.message));
-	};
+	}
 
-  useEffect(() => {
-    displayImage()
-  }, []);
-  return(
-    <div>
-      <h1>Find your fav dog🐶!</h1>
-      {loading ? "Loading..." : ""}
-      {error ? error.message : ""}
-      <img src={image} alt="dog breed" width="200px"/>
-      <button onClick={displayImage}>See Dog🐶</button>
-    </div>
-  )
+	useEffect(displayImage, []);
+	return (
+		<div>
+			<h1>Find your fav dog🐶!</h1>
+			{loading ? "Loading..." : ""}
+			{error ? error.message : ""}
+			<img src={image} alt="dog breed" width="200px" />
+			<button onClick={displayImage}>See Dog🐶</button>
+		</div>
+	);
 }
 export default App;
